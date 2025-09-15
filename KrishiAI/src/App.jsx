@@ -54,7 +54,7 @@ const App = () => {
             {/* Logo */}
             <div className="flex items-center space-x-2">
               <Sprout className="h-8 w-8 text-green-600" />
-              <span className="text-xl font-bold text-gray-800">KrishiAI</span>
+              <span className="text-xl font-bold text-gray-800">AgriAI</span>
             </div>
 
             {/* Desktop Navigation */}
@@ -729,6 +729,7 @@ const AIAssistantPage = () => {
   ]);
   const [inputText, setInputText] = useState('');
   const [isListening, setIsListening] = useState(false);
+  const [showOptionsDropdown, setShowOptionsDropdown] = useState(false);
 
   const sendMessage = () => {
     if (!inputText.trim()) return;
@@ -794,7 +795,8 @@ const AIAssistantPage = () => {
 
           {/* Input Area */}
           <div className="p-6 bg-white border-t">
-            <div className="flex space-x-4">
+            {/* Desktop Layout */}
+            <div className="hidden md:flex space-x-4">
               <div className="flex-1 relative">
                 <input
                   type="text"
@@ -823,23 +825,114 @@ const AIAssistantPage = () => {
                 Send
               </button>
             </div>
-            
-            <div className="flex items-center justify-between mt-4 text-sm text-gray-500">
-              <div className="flex items-center space-x-4">
-                <span className="flex items-center space-x-2">
-                  <MessageSquare className="h-4 w-4" />
-                  <span>Text</span>
-                </span>
-                <span className="flex items-center space-x-2">
-                  <Mic className="h-4 w-4" />
-                  <span>Voice</span>
-                </span>
-                <span className="flex items-center space-x-2">
-                  <Camera className="h-4 w-4" />
-                  <span>Image</span>
-                </span>
+
+            {/* Mobile Layout */}
+            <div className="md:hidden">
+              <div className="flex space-x-3">
+                <div className="flex-1 relative">
+                  <input
+                    type="text"
+                    value={inputText}
+                    onChange={(e) => setInputText(e.target.value)}
+                    onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+                    placeholder="Ask me anything about farming..."
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  />
+                </div>
+                
+                {/* Options Button with Dropdown */}
+                <div className="relative">
+                  <button
+                    onClick={() => setShowOptionsDropdown(!showOptionsDropdown)}
+                    className="px-4 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
+                  >
+                    <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                  </button>
+                  
+                  {/* Dropdown Menu */}
+                  {showOptionsDropdown && (
+                    <div className="absolute bottom-full right-0 mb-2 bg-white border border-gray-300 rounded-lg shadow-lg py-2 min-w-[120px] z-10">
+                      <button
+                        onClick={() => {
+                          setIsListening(!isListening);
+                          setShowOptionsDropdown(false);
+                        }}
+                        className={`w-full px-4 py-2 text-left hover:bg-gray-100 transition-colors flex items-center space-x-2 ${
+                          isListening ? 'text-red-600' : 'text-gray-700'
+                        }`}
+                      >
+                        <Mic className="h-4 w-4" />
+                        <span>{isListening ? 'Stop' : 'Voice'}</span>
+                      </button>
+                      <button
+                        onClick={() => {
+                          setShowOptionsDropdown(false);
+                          // Handle camera action
+                        }}
+                        className="w-full px-4 py-2 text-left hover:bg-gray-100 transition-colors flex items-center space-x-2 text-gray-700"
+                      >
+                        <Camera className="h-4 w-4" />
+                        <span>Camera</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+                
+                <button
+                  onClick={sendMessage}
+                  className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                >
+                  Send
+                </button>
               </div>
-              <span>Powered by AI • Supports 12 languages</span>
+            </div>
+            
+            {/* Text Below Buttons - Different for Mobile and Desktop */}
+            <div className="mt-4 text-sm text-gray-500">
+              {/* Desktop Layout */}
+              <div className="hidden md:flex items-center justify-between">
+                <div className="flex items-center space-x-4">
+                  <span className="flex items-center space-x-2">
+                    <MessageSquare className="h-4 w-4" />
+                    <span>Text</span>
+                  </span>
+                  <span className="flex items-center space-x-2">
+                    <Mic className="h-4 w-4" />
+                    <span>Voice</span>
+                  </span>
+                  <span className="flex items-center space-x-2">
+                    <Camera className="h-4 w-4" />
+                    <span>Image</span>
+                  </span>
+                </div>
+                <span>Powered by AI • Supports 12 languages</span>
+              </div>
+              
+              {/* Mobile Layout */}
+              <div className="md:hidden text-center">
+                <div className="flex items-center justify-center space-x-6 mb-2">
+                  <span className="flex items-center space-x-2">
+                    <MessageSquare className="h-4 w-4" />
+                    <span>Text</span>
+                  </span>
+                  <span className="flex items-center space-x-2">
+                    <Mic className="h-4 w-4" />
+                    <span>Voice</span>
+                  </span>
+                  <span className="flex items-center space-x-2">
+                    <Camera className="h-4 w-4" />
+                    <span>Image</span>
+                  </span>
+                </div>
+                <div className="text-center">
+                  <span>Supports 12 languages</span>
+                </div>
+                <div className="text-right mt-2">
+                  <span>Powered by AI</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
