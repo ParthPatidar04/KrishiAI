@@ -141,7 +141,7 @@ const App = () => {
           {mobileMenuOpen && (
             <div className="md:hidden border-t border-gray-200 py-4">
               <div className="flex flex-col space-y-2">
-                {[`${t('nav.home')}`, `${t('nav.soilAnalysis')}`, `${t('nav.cropGuide')}`, `${t('nav.marketInsights')}`, `${t('nav.irrigationSystem')}`, `${t('nav.aiAssistant')}`].map(page => (
+                {['home', 'soil-analysis', 'crop-guide', 'market-insights', 'irrigation-system', 'ai-assistant'].map(page => (
                   <button
                     key={page}
                     onClick={() => {
