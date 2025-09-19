@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AutomaticIrrigationPage from './components/AutomaticIrrigationPage';
+import { useTranslation } from 'react-i18next';
 import {
   Sprout,
   CloudRain,
@@ -26,13 +27,19 @@ import {
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
+  // const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const { i18n } = useTranslation();
+  const { t } = useTranslation();
 
 
   const languages = [
     { code: 'en', name: 'English', flag: '🇺🇸' },
     { code: 'hi', name: 'हिंदी', flag: '🇮🇳' }
   ];
+
+  const handleLanguageChange = (languageCode) => {
+    i18n.changeLanguage(languageCode);
+  };
 
   const renderPage = () => {
     switch (currentPage) {
@@ -65,28 +72,28 @@ const App = () => {
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${currentPage === 'home' ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
                   }`}
               >
-                Home
+                {t('nav.home')}
               </button>
               <button
                 onClick={() => setCurrentPage('soil-analysis')}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${currentPage === 'soil-analysis' ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
                   }`}
               >
-                Soil Analysis
+                {t('nav.soilAnalysis')}
               </button>
               <button
                 onClick={() => setCurrentPage('crop-recommendation')}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${currentPage === 'crop-recommendation' ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
                   }`}
               >
-                Crop Guide
+                {t('nav.cropGuide')}
               </button>
               <button
                 onClick={() => setCurrentPage('market-insights')}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${currentPage === 'market-insights' ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
                   }`}
               >
-                Market Insights
+                {t('nav.marketInsights')}
               </button>
 
               <button
@@ -94,14 +101,14 @@ const App = () => {
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${currentPage === 'irrigation-system' ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
                   }`}
               >
-                Automatic Irrigation System
+                {t('nav.irrigationSystem')}
               </button>
               <button
                 onClick={() => setCurrentPage('ai-assistant')}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${currentPage === 'ai-assistant' ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
                   }`}
               >
-                AI Assistant
+                {t('nav.aiAssistant')}
               </button>
 
             </div>
@@ -109,8 +116,8 @@ const App = () => {
             {/* Language Selector & Mobile Menu */}
             <div className="flex items-center space-x-4">
               <select
-                value={selectedLanguage}
-                onChange={(e) => setSelectedLanguage(e.target.value)}
+                value={i18n.language}
+                onChange={(e) => handleLanguageChange(e.target.value)}
                 className="text-sm border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500"
               >
                 {languages.map(lang => (
@@ -134,7 +141,7 @@ const App = () => {
           {mobileMenuOpen && (
             <div className="md:hidden border-t border-gray-200 py-4">
               <div className="flex flex-col space-y-2">
-                {['home', 'soil-analysis', 'crop-recommendation', 'market-insights', 'irrigation-system' ,'ai-assistant'].map(page => (
+                {[`${t('nav.home')}`, `${t('nav.soilAnalysis')}`, `${t('nav.cropGuide')}`, `${t('nav.marketInsights')}`, `${t('nav.irrigationSystem')}`, `${t('nav.aiAssistant')}`].map(page => (
                   <button
                     key={page}
                     onClick={() => {
@@ -216,6 +223,7 @@ const App = () => {
 
 // HomePage Component
 const HomePage = ({ setCurrentPage }) => {
+  const { t } = useTranslation();
   const features = [
     {
       icon: <Leaf className="h-8 w-8 text-green-600" />,
@@ -258,10 +266,10 @@ const HomePage = ({ setCurrentPage }) => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-                Smart Farming with <span className="text-green-200">AI Power</span>
+                <h1>{t('hero.title')} <span>{t('hero.titleHighlight')}</span></h1>
               </h1>
               <p className="text-xl md:text-2xl text-green-100 mb-8">
-                Get personalized crop recommendations, soil analysis, and market insights to increase your farm's productivity and profits.
+                {t('hero.subtitle')}
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <button
@@ -269,13 +277,13 @@ const HomePage = ({ setCurrentPage }) => {
                   className="bg-white text-green-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-green-50 transition-colors flex items-center justify-center space-x-2"
                 >
                   <MessageSquare className="h-5 w-5" />
-                  <span>Start Chat</span>
+                  <span>{t('hero.startChat')}</span>
                 </button>
                 <button
                   onClick={() => setCurrentPage('soil-analysis')}
                   className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-green-600 transition-colors"
                 >
-                  Analyze Soil
+                  {t('hero.analyzeSoil')}
                 </button>
               </div>
             </div>
