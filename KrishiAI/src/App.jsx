@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Sprout, 
-  CloudRain, 
-  TrendingUp, 
-  Mic, 
-  MessageSquare, 
-  Camera, 
-  MapPin, 
+import AutomaticIrrigationPage from './components/AutomaticIrrigationPage';
+import {
+  Sprout,
+  CloudRain,
+  TrendingUp,
+  Mic,
+  MessageSquare,
+  Camera,
+  MapPin,
   Leaf,
   BarChart3,
   Sun,
@@ -27,20 +28,20 @@ const App = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('en');
 
+
   const languages = [
     { code: 'en', name: 'English', flag: '🇺🇸' },
-    { code: 'hi', name: 'हिंदी', flag: '🇮🇳' },
-    { code: 'bn', name: 'বাংলা', flag: '🇧🇩' },
-    { code: 'te', name: 'తెలుగు', flag: '🇮🇳' }
+    { code: 'hi', name: 'हिंदी', flag: '🇮🇳' }
   ];
 
   const renderPage = () => {
-    switch(currentPage) {
+    switch (currentPage) {
       case 'home': return <HomePage setCurrentPage={setCurrentPage} />;
       case 'soil-analysis': return <SoilAnalysisPage />;
       case 'crop-recommendation': return <CropRecommendationPage />;
       case 'market-insights': return <MarketInsightsPage />;
       case 'ai-assistant': return <AIAssistantPage />;
+      case 'irrigation-system': return <AutomaticIrrigationPage />;
       default: return <HomePage setCurrentPage={setCurrentPage} />;
     }
   };
@@ -54,56 +55,60 @@ const App = () => {
             {/* Logo */}
             <div className="flex items-center space-x-2">
               <Sprout className="h-8 w-8 text-green-600" />
-              <span className="text-xl font-bold text-gray-800">AgriAI</span>
+              <span className="text-xl font-bold text-gray-800">KrishiAI</span>
             </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <button 
+              <button
                 onClick={() => setCurrentPage('home')}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  currentPage === 'home' ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
-                }`}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${currentPage === 'home' ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
+                  }`}
               >
                 Home
               </button>
-              <button 
+              <button
                 onClick={() => setCurrentPage('soil-analysis')}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  currentPage === 'soil-analysis' ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
-                }`}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${currentPage === 'soil-analysis' ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
+                  }`}
               >
                 Soil Analysis
               </button>
-              <button 
+              <button
                 onClick={() => setCurrentPage('crop-recommendation')}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  currentPage === 'crop-recommendation' ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
-                }`}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${currentPage === 'crop-recommendation' ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
+                  }`}
               >
                 Crop Guide
               </button>
-              <button 
+              <button
                 onClick={() => setCurrentPage('market-insights')}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  currentPage === 'market-insights' ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
-                }`}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${currentPage === 'market-insights' ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
+                  }`}
               >
                 Market Insights
               </button>
-              <button 
+
+              <button
+                onClick={() => setCurrentPage('irrigation-system')}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${currentPage === 'irrigation-system' ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
+                  }`}
+              >
+                Automatic Irrigation System
+              </button>
+              <button
                 onClick={() => setCurrentPage('ai-assistant')}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  currentPage === 'ai-assistant' ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
-                }`}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${currentPage === 'ai-assistant' ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
+                  }`}
               >
                 AI Assistant
               </button>
+
             </div>
 
             {/* Language Selector & Mobile Menu */}
             <div className="flex items-center space-x-4">
-              <select 
+              <select
                 value={selectedLanguage}
                 onChange={(e) => setSelectedLanguage(e.target.value)}
                 className="text-sm border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-green-500"
@@ -122,6 +127,7 @@ const App = () => {
                 {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
             </div>
+
           </div>
 
           {/* Mobile Menu */}
@@ -135,9 +141,8 @@ const App = () => {
                       setCurrentPage(page);
                       setMobileMenuOpen(false);
                     }}
-                    className={`text-left px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                      currentPage === page ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
-                    }`}
+                    className={`text-left px-3 py-2 rounded-md text-sm font-medium transition-colors ${currentPage === page ? 'text-green-600 bg-green-50' : 'text-gray-700 hover:text-green-600'
+                      }`}
                   >
                     {page.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
                   </button>
@@ -160,13 +165,13 @@ const App = () => {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Sprout className="h-8 w-8 text-green-400" />
-                <span className="text-xl font-bold">AgriAI</span>
+                <span className="text-xl font-bold">KrishiAI</span>
               </div>
               <p className="text-gray-300 text-sm">
                 Empowering farmers with AI-driven agricultural insights for sustainable and profitable farming.
               </p>
             </div>
-            
+
             <div>
               <h3 className="text-lg font-semibold mb-4">Features</h3>
               <ul className="space-y-2 text-sm text-gray-300">
@@ -199,9 +204,9 @@ const App = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2025 AgriAI. All rights reserved. Built for farmers, by technology.</p>
+            <p>&copy; 2025 KrishiAI. All rights reserved. Built for farmers, by technology.</p>
           </div>
         </div>
       </footer>
@@ -259,14 +264,14 @@ const HomePage = ({ setCurrentPage }) => {
                 Get personalized crop recommendations, soil analysis, and market insights to increase your farm's productivity and profits.
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                <button 
+                <button
                   onClick={() => setCurrentPage('ai-assistant')}
                   className="bg-white text-green-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-green-50 transition-colors flex items-center justify-center space-x-2"
                 >
                   <MessageSquare className="h-5 w-5" />
                   <span>Start Chat</span>
                 </button>
-                <button 
+                <button
                   onClick={() => setCurrentPage('soil-analysis')}
                   className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-green-600 transition-colors"
                 >
@@ -337,7 +342,7 @@ const HomePage = ({ setCurrentPage }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
-              <div 
+              <div
                 key={index}
                 className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer group"
                 onClick={feature.action}
@@ -364,7 +369,7 @@ const HomePage = ({ setCurrentPage }) => {
           <p className="text-xl mb-8 text-green-100">
             Join thousands of farmers who are already using AI to increase their yields and profits.
           </p>
-          <button 
+          <button
             onClick={() => setCurrentPage('ai-assistant')}
             className="bg-white text-green-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-green-50 transition-colors inline-flex items-center space-x-2"
           >
@@ -426,13 +431,13 @@ const SoilAnalysisPage = () => {
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
               />
             </div>
-            <button 
+            <button
               className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors flex items-center space-x-2"
             >
               <MapPin className="h-5 w-5" />
               <span>Use GPS</span>
             </button>
-            <button 
+            <button
               onClick={runAnalysis}
               disabled={loading}
               className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
@@ -507,7 +512,7 @@ const SoilAnalysisPage = () => {
 const CropRecommendationPage = () => {
   const [selectedSeason, setSelectedSeason] = useState('kharif');
   const [farmSize, setFarmSize] = useState('');
-  
+
   const recommendations = {
     kharif: [
       {
@@ -519,7 +524,7 @@ const CropRecommendationPage = () => {
       },
       {
         name: "Cotton",
-        yield: "18 quintals/hectare", 
+        yield: "18 quintals/hectare",
         profit: "₹42,000",
         sustainability: "Medium",
         image: "🌱"
@@ -527,7 +532,7 @@ const CropRecommendationPage = () => {
       {
         name: "Sugarcane",
         yield: "80 tonnes/hectare",
-        profit: "₹55,000", 
+        profit: "₹55,000",
         sustainability: "Low",
         image: "🎋"
       }
@@ -537,7 +542,7 @@ const CropRecommendationPage = () => {
         name: "Wheat",
         yield: "38 quintals/hectare",
         profit: "₹28,000",
-        sustainability: "High", 
+        sustainability: "High",
         image: "🌾"
       },
       {
@@ -549,7 +554,7 @@ const CropRecommendationPage = () => {
       },
       {
         name: "Gram",
-        yield: "15 quintals/hectare", 
+        yield: "15 quintals/hectare",
         profit: "₹22,000",
         sustainability: "Very High",
         image: "🫘"
@@ -607,7 +612,7 @@ const CropRecommendationPage = () => {
               <div className="p-8 text-center">
                 <div className="text-6xl mb-4">{crop.image}</div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">{crop.name}</h3>
-                
+
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                     <span className="text-gray-600">Expected Yield</span>
@@ -619,16 +624,15 @@ const CropRecommendationPage = () => {
                   </div>
                   <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
                     <span className="text-gray-600">Sustainability</span>
-                    <span className={`font-semibold ${
-                      crop.sustainability === 'Very High' ? 'text-green-600' :
-                      crop.sustainability === 'High' ? 'text-blue-600' :
-                      crop.sustainability === 'Medium' ? 'text-yellow-600' : 'text-red-600'
-                    }`}>
+                    <span className={`font-semibold ${crop.sustainability === 'Very High' ? 'text-green-600' :
+                        crop.sustainability === 'High' ? 'text-blue-600' :
+                          crop.sustainability === 'Medium' ? 'text-yellow-600' : 'text-red-600'
+                      }`}>
                       {crop.sustainability}
                     </span>
                   </div>
                 </div>
-                
+
                 <button className="w-full bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
                   Select This Crop
                 </button>
@@ -672,11 +676,10 @@ const MarketInsightsPage = () => {
                     {item.change} vs last week
                   </p>
                 </div>
-                <div className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${
-                  item.demand === 'Very High' ? 'bg-green-100 text-green-800' :
-                  item.demand === 'High' ? 'bg-blue-100 text-blue-800' :
-                  'bg-yellow-100 text-yellow-800'
-                }`}>
+                <div className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${item.demand === 'Very High' ? 'bg-green-100 text-green-800' :
+                    item.demand === 'High' ? 'bg-blue-100 text-blue-800' :
+                      'bg-yellow-100 text-yellow-800'
+                  }`}>
                   {item.demand} Demand
                 </div>
               </div>
@@ -733,10 +736,10 @@ const AIAssistantPage = () => {
 
   const sendMessage = () => {
     if (!inputText.trim()) return;
-    
-    setMessages([...messages, 
-      { type: 'user', content: inputText },
-      { type: 'ai', content: 'Based on your question, I recommend checking your soil pH levels and considering organic fertilizers. Would you like specific product recommendations for your region?' }
+
+    setMessages([...messages,
+    { type: 'user', content: inputText },
+    { type: 'ai', content: 'Based on your question, I recommend checking your soil pH levels and considering organic fertilizers. Would you like specific product recommendations for your region?' }
     ]);
     setInputText('');
   };
@@ -765,11 +768,10 @@ const AIAssistantPage = () => {
             <div className="space-y-4">
               {messages.map((message, index) => (
                 <div key={index} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${
-                    message.type === 'user' 
-                      ? 'bg-green-600 text-white' 
+                  <div className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${message.type === 'user'
+                      ? 'bg-green-600 text-white'
                       : 'bg-white text-gray-800 shadow-sm border'
-                  }`}>
+                    }`}>
                     {message.content}
                   </div>
                 </div>
@@ -809,9 +811,8 @@ const AIAssistantPage = () => {
               </div>
               <button
                 onClick={() => setIsListening(!isListening)}
-                className={`px-4 py-3 rounded-lg transition-colors ${
-                  isListening ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`}
+                className={`px-4 py-3 rounded-lg transition-colors ${isListening ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  }`}
               >
                 <Mic className="h-5 w-5" />
               </button>
@@ -839,7 +840,7 @@ const AIAssistantPage = () => {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                   />
                 </div>
-                
+
                 {/* Options Button with Dropdown */}
                 <div className="relative">
                   <button
@@ -850,7 +851,7 @@ const AIAssistantPage = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg>
                   </button>
-                  
+
                   {/* Dropdown Menu */}
                   {showOptionsDropdown && (
                     <div className="absolute bottom-full right-0 mb-2 bg-white border border-gray-300 rounded-lg shadow-lg py-2 min-w-[120px] z-10">
@@ -859,9 +860,8 @@ const AIAssistantPage = () => {
                           setIsListening(!isListening);
                           setShowOptionsDropdown(false);
                         }}
-                        className={`w-full px-4 py-2 text-left hover:bg-gray-100 transition-colors flex items-center space-x-2 ${
-                          isListening ? 'text-red-600' : 'text-gray-700'
-                        }`}
+                        className={`w-full px-4 py-2 text-left hover:bg-gray-100 transition-colors flex items-center space-x-2 ${isListening ? 'text-red-600' : 'text-gray-700'
+                          }`}
                       >
                         <Mic className="h-4 w-4" />
                         <span>{isListening ? 'Stop' : 'Voice'}</span>
@@ -879,7 +879,7 @@ const AIAssistantPage = () => {
                     </div>
                   )}
                 </div>
-                
+
                 <button
                   onClick={sendMessage}
                   className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
@@ -888,7 +888,7 @@ const AIAssistantPage = () => {
                 </button>
               </div>
             </div>
-            
+
             {/* Text Below Buttons - Different for Mobile and Desktop */}
             <div className="mt-4 text-sm text-gray-500">
               {/* Desktop Layout */}
@@ -909,7 +909,7 @@ const AIAssistantPage = () => {
                 </div>
                 <span>Powered by AI • Supports 12 languages</span>
               </div>
-              
+
               {/* Mobile Layout */}
               <div className="md:hidden text-center">
                 <div className="flex items-center justify-center space-x-6 mb-2">
