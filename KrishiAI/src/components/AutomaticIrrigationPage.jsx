@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { 
   Droplets, 
   Thermometer, 
@@ -24,6 +25,7 @@ const AutomaticIrrigationPage = () => {
   const [systemStatus, setSystemStatus] = useState('active');
   const [selectedZone, setSelectedZone] = useState('zone-1');
   const [isManualMode, setIsManualMode] = useState(false);
+  const { t } = useTranslation();
 
   // Dummy data for irrigation zones
   const irrigationZones = [
@@ -133,9 +135,9 @@ const AutomaticIrrigationPage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Automatic Irrigation System</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">{t('irrigation.title')}</h1>
           <p className="text-xl text-gray-600">
-            AI-powered smart irrigation for optimal water usage and crop health
+            {t('irrigation.subtitle')}
           </p>
         </div>
 
@@ -144,7 +146,7 @@ const AutomaticIrrigationPage = () => {
           <div className="bg-white rounded-2xl shadow-lg p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Total Zones</p>
+                <p className="text-sm text-gray-600">{t('irrigation.totalZones')}</p>
                 <p className="text-3xl font-bold text-gray-900">{systemOverview.totalZones}</p>
               </div>
               <div className="p-3 bg-blue-100 rounded-full">
@@ -156,7 +158,7 @@ const AutomaticIrrigationPage = () => {
           <div className="bg-white rounded-2xl shadow-lg p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Active Zones</p>
+                <p className="text-sm text-gray-600">{t('irrigation.activeZones')}</p>
                 <p className="text-3xl font-bold text-green-600">{systemOverview.activeZones}</p>
               </div>
               <div className="p-3 bg-green-100 rounded-full">
@@ -168,7 +170,7 @@ const AutomaticIrrigationPage = () => {
           <div className="bg-white rounded-2xl shadow-lg p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Water Saved</p>
+                <p className="text-sm text-gray-600">{t('irrigation.waterSaved')}</p>
                 <p className="text-3xl font-bold text-blue-600">{systemOverview.waterSaved}</p>
               </div>
               <div className="p-3 bg-blue-100 rounded-full">
@@ -180,7 +182,7 @@ const AutomaticIrrigationPage = () => {
           <div className="bg-white rounded-2xl shadow-lg p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Efficiency</p>
+                <p className="text-sm text-gray-600">{t('irrigation.efficiency')}</p>
                 <p className="text-3xl font-bold text-purple-600">{systemOverview.energyEfficiency}</p>
               </div>
               <div className="p-3 bg-purple-100 rounded-full">
@@ -195,10 +197,10 @@ const AutomaticIrrigationPage = () => {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl shadow-lg p-8">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-semibold text-gray-900">Irrigation Zones</h2>
+                <h2 className="text-2xl font-semibold text-gray-900">{t('irrigation.irrigationZones')}</h2>
                 <div className="flex items-center space-x-4">
                   <div className="flex items-center space-x-2">
-                    <span className="text-sm text-gray-600">Manual Mode</span>
+                    <span className="text-sm text-gray-600">{t('irrigation.manualMode')}</span>
                     <button
                       onClick={() => setIsManualMode(!isManualMode)}
                       className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 ${
@@ -283,7 +285,7 @@ const AutomaticIrrigationPage = () => {
           <div className="space-y-8">
             {/* Weather Widget */}
             <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Weather Conditions</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">{t('irrigation.weatherConditions')}</h3>
               
               <div className="text-center mb-6">
                 <div className="text-4xl font-bold text-gray-900 mb-2">{weatherData.temperature}°C</div>

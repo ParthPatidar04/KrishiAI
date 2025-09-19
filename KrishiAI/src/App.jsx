@@ -255,7 +255,7 @@ const HomePage = ({ setCurrentPage }) => {
     { label: `${t('stats.farmersHelped')}`, value: "50,000+", icon: <Users className="h-6 w-6" /> },
     { label: `${t('stats.cropVarieties')}`, value: "200+", icon: <Sprout className="h-6 w-6" /> },
     { label: `${t('stats.accuracyRate')}`, value: "95%", icon: <Shield className="h-6 w-6" /> },
-    { label: `${t('stats.languages')}`, value: "12", icon: <Globe className="h-6 w-6" /> }
+    { label: `${t('stats.languages')}`, value: "2", icon: <Globe className="h-6 w-6" /> }
   ];
 
   return (
@@ -395,6 +395,7 @@ const SoilAnalysisPage = () => {
   const [location, setLocation] = useState('');
   const [analysisData, setAnalysisData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
 
   const runAnalysis = () => {
     setLoading(true);
@@ -420,15 +421,15 @@ const SoilAnalysisPage = () => {
     <div className="py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Soil Analysis</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">{t('soilAnalysis.title')}</h1>
           <p className="text-xl text-gray-600">
-            Get detailed insights about your soil conditions using satellite data and AI analysis
+            {t('soilAnalysis.subtitle')}
           </p>
         </div>
 
         {/* Input Section */}
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-semibold mb-6">Enter Your Location</h2>
+          <h2 className="text-2xl font-semibold mb-6">{t('soilAnalysis.enterLocation')}</h2>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <div className="flex-1">
               <input
@@ -443,14 +444,14 @@ const SoilAnalysisPage = () => {
               className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors flex items-center space-x-2"
             >
               <MapPin className="h-5 w-5" />
-              <span>Use GPS</span>
+              <span>{t('soilAnalysis.useGPS')}</span>
             </button>
             <button
               onClick={runAnalysis}
               disabled={loading}
               className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
             >
-              {loading ? 'Analyzing...' : 'Analyze Soil'}
+              {loading ? `${t('soilAnalysis.analyzing')}` : `${t('soilAnalysis.analyzeSoil')}`}
             </button>
           </div>
         </div>
@@ -520,6 +521,7 @@ const SoilAnalysisPage = () => {
 const CropRecommendationPage = () => {
   const [selectedSeason, setSelectedSeason] = useState('kharif');
   const [farmSize, setFarmSize] = useState('');
+  const { t } = useTranslation();
 
   const recommendations = {
     kharif: [
@@ -574,9 +576,9 @@ const CropRecommendationPage = () => {
     <div className="py-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Crop Recommendations</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">{t('cropRec.title')}</h1>
           <p className="text-xl text-gray-600">
-            AI-powered suggestions based on your soil, weather, and market conditions
+            {t('cropRec.subtitle')}
           </p>
         </div>
 
@@ -584,7 +586,7 @@ const CropRecommendationPage = () => {
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Season</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">{t('cropRec.season')}</label>
               <select
                 value={selectedSeason}
                 onChange={(e) => setSelectedSeason(e.target.value)}
@@ -596,7 +598,7 @@ const CropRecommendationPage = () => {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Farm Size (Hectares)</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">{t('cropRec.farmSize')}</label>
               <input
                 type="number"
                 placeholder="Enter farm size"
@@ -607,7 +609,7 @@ const CropRecommendationPage = () => {
             </div>
             <div className="flex items-end">
               <button className="w-full bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
-                Get Recommendations
+                {t('cropRec.getRecommendations')}
               </button>
             </div>
           </div>
@@ -655,6 +657,7 @@ const CropRecommendationPage = () => {
 
 // Market Insights Page
 const MarketInsightsPage = () => {
+  const { t } = useTranslation();
   const marketData = [
     { crop: "Rice", currentPrice: "₹2,100/quintal", change: "+5.2%", demand: "High" },
     { crop: "Wheat", currentPrice: "₹2,350/quintal", change: "-2.1%", demand: "Medium" },
@@ -666,9 +669,9 @@ const MarketInsightsPage = () => {
     <div className="py-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Market Insights</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">{t('market.title')}</h1>
           <p className="text-xl text-gray-600">
-            Real-time market prices and demand forecasting for better decision making
+            {t('market.subtitle')}
           </p>
         </div>
 
@@ -681,7 +684,7 @@ const MarketInsightsPage = () => {
                 <div>
                   <p className="text-2xl font-bold text-gray-900">{item.currentPrice}</p>
                   <p className={`text-sm ${item.change.startsWith('+') ? 'text-green-600' : 'text-red-600'}`}>
-                    {item.change} vs last week
+                    {item.change} {t('market.priceVsLastWeek')}
                   </p>
                 </div>
                 <div className={`inline-block px-3 py-1 rounded-full text-xs font-medium ${item.demand === 'Very High' ? 'bg-green-100 text-green-800' :
@@ -697,7 +700,7 @@ const MarketInsightsPage = () => {
 
         {/* Price Trends Chart Placeholder */}
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-semibold mb-6">Price Trends (Last 30 Days)</h2>
+          <h2 className="text-2xl font-semibold mb-6">{t('market.priceTrends')}</h2>
           <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
             <div className="text-center text-gray-500">
               <BarChart3 className="h-12 w-12 mx-auto mb-4" />
@@ -709,7 +712,7 @@ const MarketInsightsPage = () => {
 
         {/* Market Alerts */}
         <div className="bg-white rounded-2xl shadow-lg p-8">
-          <h2 className="text-2xl font-semibold mb-6">Market Alerts & Predictions</h2>
+          <h2 className="text-2xl font-semibold mb-6">{t('market.alertsPredictions')}</h2>
           <div className="space-y-4">
             <div className="border-l-4 border-green-500 bg-green-50 p-4 rounded">
               <h4 className="font-semibold text-green-800">Price Surge Alert</h4>
@@ -732,6 +735,7 @@ const MarketInsightsPage = () => {
 
 // AI Assistant Page
 const AIAssistantPage = () => {
+  const { t } = useTranslation();
   const [messages, setMessages] = useState([
     {
       type: 'ai',
@@ -763,9 +767,9 @@ const AIAssistantPage = () => {
     <div className="py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">AI Assistant</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">{t('aiAssistant.title')}</h1>
           <p className="text-xl text-gray-600">
-            Chat with our multilingual AI assistant for personalized farming guidance
+            {t('aiAssistant.subtitle')}
           </p>
         </div>
 
