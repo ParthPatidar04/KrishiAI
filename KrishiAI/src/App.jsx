@@ -175,32 +175,32 @@ const App = () => {
                 <span className="text-xl font-bold">KrishiAI</span>
               </div>
               <p className="text-gray-300 text-sm">
-                Empowering farmers with AI-driven agricultural insights for sustainable and profitable farming.
+                {t('footer.tagline')}
               </p>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-4">Features</h3>
+              <h3 className="text-lg font-semibold mb-4">{t('footer.features')}</h3>
               <ul className="space-y-2 text-sm text-gray-300">
-                <li>Soil Analysis</li>
-                <li>Crop Recommendations</li>
-                <li>Market Insights</li>
-                <li>Weather Forecasting</li>
+                <li>{t('footer.soilAnalysis')}</li>
+                <li>{t('footer.cropRecommendations')}</li>
+                <li>{t('footer.marketInsights')}</li>
+                <li>{t('footer.weatherForecasting')}</li>
               </ul>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-4">Support</h3>
+              <h3 className="text-lg font-semibold mb-4">{t('footer.support')}</h3>
               <ul className="space-y-2 text-sm text-gray-300">
-                <li>Help Center</li>
-                <li>Contact Us</li>
-                <li>Training Resources</li>
-                <li>Community Forum</li>
+                <li>{t('footer.helpCenter')}</li>
+                <li>{t('footer.contactUs')}</li>
+                <li>{t('footer.trainingResources')}</li>
+                <li>{t('footer.communityForum')}</li>
               </ul>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-4">Connect</h3>
+              <h3 className="text-lg font-semibold mb-4">{t('footer.connect')}</h3>
               <div className="flex space-x-4">
                 <button className="p-2 bg-gray-700 rounded-md hover:bg-gray-600 transition-colors">
                   <Globe className="h-5 w-5" />
@@ -213,7 +213,7 @@ const App = () => {
           </div>
 
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2025 KrishiAI. All rights reserved. Built for farmers, by technology.</p>
+            <p>{t('footer.copyright')}</p>
           </div>
         </div>
       </footer>
@@ -227,35 +227,35 @@ const HomePage = ({ setCurrentPage }) => {
   const features = [
     {
       icon: <Leaf className="h-8 w-8 text-green-600" />,
-      title: "Smart Soil Analysis",
-      description: "Real-time soil property analysis using satellite data and IoT sensors",
+      title: `${t('features.soilAnalysis.title')}`,
+      description: `${t('features.soilAnalysis.desc')}`,
       action: () => setCurrentPage('soil-analysis')
     },
     {
       icon: <Sprout className="h-8 w-8 text-blue-600" />,
-      title: "Crop Recommendations",
-      description: "AI-powered crop suggestions based on your soil, weather, and market conditions",
+      title: `${t('features.cropRecommendations.title')}`,
+      description: `${t('features.cropRecommendations.desc')}`,
       action: () => setCurrentPage('crop-recommendation')
     },
     {
       icon: <TrendingUp className="h-8 w-8 text-purple-600" />,
-      title: "Market Insights",
-      description: "Live market prices and demand forecasting to maximize your profits",
+      title: `${t('features.marketInsights.title')}`,
+      description: `${t('features.marketInsights.desc')}`,
       action: () => setCurrentPage('market-insights')
     },
     {
       icon: <MessageSquare className="h-8 w-8 text-orange-600" />,
-      title: "AI Assistant",
-      description: "Chat with our multilingual AI assistant for personalized farming guidance",
+      title: `${t('features.aiAssistant.title')}`,
+      description: `${t('features.aiAssistant.desc')}`,
       action: () => setCurrentPage('ai-assistant')
     }
   ];
 
   const stats = [
-    { label: "Farmers Helped", value: "50,000+", icon: <Users className="h-6 w-6" /> },
-    { label: "Crop Varieties", value: "200+", icon: <Sprout className="h-6 w-6" /> },
-    { label: "Accuracy Rate", value: "95%", icon: <Shield className="h-6 w-6" /> },
-    { label: "Languages", value: "12", icon: <Globe className="h-6 w-6" /> }
+    { label: `${t('stats.farmersHelped')}`, value: "50,000+", icon: <Users className="h-6 w-6" /> },
+    { label: `${t('stats.cropVarieties')}`, value: "200+", icon: <Sprout className="h-6 w-6" /> },
+    { label: `${t('stats.accuracyRate')}`, value: "95%", icon: <Shield className="h-6 w-6" /> },
+    { label: `${t('stats.languages')}`, value: "12", icon: <Globe className="h-6 w-6" /> }
   ];
 
   return (
@@ -341,10 +341,10 @@ const HomePage = ({ setCurrentPage }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Everything You Need for Smart Farming
+              {t('features.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our AI-powered platform combines cutting-edge technology with agricultural expertise to help you make informed decisions.
+              {t('features.subtitle')}
             </p>
           </div>
 
@@ -361,7 +361,7 @@ const HomePage = ({ setCurrentPage }) => {
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">{feature.title}</h3>
                 <p className="text-gray-600 mb-6">{feature.description}</p>
                 <div className="flex items-center text-green-600 font-medium group-hover:text-green-700">
-                  <span>Learn More</span>
+                  <span>{t('features.learnMore')}</span>
                   <ChevronRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
@@ -373,16 +373,16 @@ const HomePage = ({ setCurrentPage }) => {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-green-600 to-blue-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Transform Your Farming?</h2>
+          <h2 className="text-4xl font-bold mb-6">{t('cta.title')}</h2>
           <p className="text-xl mb-8 text-green-100">
-            Join thousands of farmers who are already using AI to increase their yields and profits.
+            {t('cta.subtitle')}
           </p>
           <button
             onClick={() => setCurrentPage('ai-assistant')}
             className="bg-white text-green-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-green-50 transition-colors inline-flex items-center space-x-2"
           >
             <MessageSquare className="h-5 w-5" />
-            <span>Get Started Today</span>
+            <span>{t('cta.getStarted')}</span>
           </button>
         </div>
       </section>
